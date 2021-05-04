@@ -1,10 +1,16 @@
 package janus
+
+import janus.apus.GrupoCostos
+
 class Rubro implements Serializable {
     Item rubro
     Item item
+    GrupoCostos grupoCostos
     Date fecha
     double cantidad
     double rendimiento = 1
+
+
     static auditable = true
     static mapping = {
         table 'rbro'
@@ -19,6 +25,7 @@ class Rubro implements Serializable {
             fecha column: 'rbrofcha'
             cantidad column: 'rbrocntd'
             rendimiento column: 'rbrorndt'
+            grupoCostos column: 'grcs__id'
         }
     }
     static constraints = {
@@ -26,6 +33,7 @@ class Rubro implements Serializable {
         cantidad(blank: true, attributes: [title: 'cantidad'])
         rubro(blank: false, nullable: false, attributes: [title: 'rubro'])
         fecha(blank: true, nullable: true, attributes: [title: 'fecha'])
+        grupoCostos(blank: true, nullable: true, attributes: [title: 'grupo de costos'])
     }
 
 

@@ -244,7 +244,7 @@
                 <input type="hidden" id="item_tipoLista">
             </div>
 
-            <div class="span6">
+            <div class="span5">
                 DESCRIPCIÓN
                 <input type="text" name="item.descripcion" id="item_desc" class="span11" disabled="disabled">
             </div>
@@ -259,10 +259,18 @@
                 <input type="text" name="item.cantidad" class="span12" id="item_cantidad" value="0" style="text-align: right">
             </div>
 
-            <div class="span2">
+            <div class="span1">
                 RENDIMIENTO
-                <input type="text" name="item.rendimiento" class="span8" id="item_rendimiento" value="1" style="text-align: right; color: #44a;width: 170px;">
+                <input type="text" name="item.rendimiento" class="span8" id="item_rendimiento" value="1"
+                       style="text-align: right; color: #44a;width: 100px;">
             </div>
+
+            <div class="span2" style="width: 150px; margin-left: 50px">
+                Grupo de Costos
+                <g:select name="rubro.unidad.id" from="${janus.apus.GrupoCostos.list()}" class="span12"
+                          optionKey="id" optionValue="descripcion"/>
+            </div>
+
 
             <g:if test="${modifica}">
                 <div class="span1" style="border: 0px solid black;height: 45px;padding-top: 22px;margin-left: 10px">
