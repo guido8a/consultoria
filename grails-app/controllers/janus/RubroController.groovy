@@ -1,6 +1,7 @@
 package janus
 
 import janus.apus.ArchivoEspecificacion
+import janus.apus.GrupoCostos
 
 //import org.apache.tools.ant.types.resources.comparators.Date
 import org.springframework.dao.DataIntegrityViolationException
@@ -132,9 +133,10 @@ class RubroController extends janus.seguridad.Shield {
     }
 
     def addItem() {
-//        println "add item " + params
+        println "add item " + params
         def rubro = Item.get(params.rubro)
         def item = Item.get(params.item)
+        def grupo = GrupoCostos.get(params.grupoCostos)
         def detalle
         detalle = Rubro.findByItemAndRubro(item, rubro)
         if (!detalle)
@@ -142,6 +144,7 @@ class RubroController extends janus.seguridad.Shield {
         detalle.rubro = rubro
         detalle.item = item
         detalle.cantidad = params.cantidad.toDouble()
+        detalle.grupoCostos = grupo
         if (detalle.item.codigo=~"103.001.00") {
             detalle.cantidad = 1
             detalle.rendimiento = 1
@@ -158,7 +161,7 @@ class RubroController extends janus.seguridad.Shield {
         } else {
             rubro.fechaModificacion = new Date()
             rubro.save(flush: true)
-            render "" + item.departamento.subgrupo.grupo.id + ";" + detalle.id + ";" + detalle.item.id + ";" + detalle.cantidad + ";" + detalle.rendimiento + ";" + ((item.tipoLista) ? item.tipoLista?.id : "0")
+            render "" + item.departamento.subgrupo.grupo.id + ";" + detalle.id + ";" + detalle.item.id + ";" + detalle.cantidad + ";" + detalle.rendimiento + ";" + ((item.tipoLista) ? item.tipoLista?.id : "0") + ";" + detalle.grupoCostos.id
         }
     }
 

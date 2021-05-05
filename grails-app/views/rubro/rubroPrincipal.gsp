@@ -267,7 +267,7 @@
 
             <div class="span2" style="width: 150px; margin-left: 50px">
                 Grupo de Costos
-                <g:select name="rubro.unidad.id" from="${janus.apus.GrupoCostos.list()}" class="span12"
+                <g:select name="grupoCostos" from="${janus.apus.GrupoCostos.list()}" class="span12"
                           optionKey="id" optionValue="descripcion"/>
             </div>
 
@@ -321,6 +321,7 @@
 
                         <td class="col_tarifa cod_${rub.item.codigo?.replaceAll('\\.', '_')}" style="display: none;text-align: right" id="i_${rub.item.id}"></td>
                         <td class="col_hora" style="display: none;text-align: right"></td>
+                        <td class="col_grp" style="display: none;text-align: right" valor="${rub?.grupoCostos?.id}"></td>
                         <td class="col_rend rend" style="width: 50px;text-align: right" valor="${rub.rendimiento}">
                             <g:formatNumber number="${rub.rendimiento}" format="##,#####0" minFractionDigits="5" maxFractionDigits="5" locale="ec"/>
                         </td>
@@ -368,6 +369,7 @@
 
                         <td class="col_jornal" style="display: none;text-align: right" id="i_${rub.item.id}"></td>
                         <td class="col_hora" style="display: none;text-align: right"></td>
+                        <td class="col_grp" style="display: none;text-align: right" valor="${rub?.grupoCostos?.id}"></td>
                         <td class="col_rend rend" style="width: 50px;text-align: right" valor="${rub.rendimiento}">
                             <g:formatNumber number="${rub.rendimiento}" format="##,#####0" minFractionDigits="5" maxFractionDigits="5" locale="ec"/>
                         </td>
@@ -410,6 +412,7 @@
                         <td class="cdgo">${rub.item.codigo}</td>
                         <td>${rub.item.nombre}</td>
                         <td style="width: 60px !important;text-align: center" class="col_unidad">${rub.item.unidad.codigo}</td>
+                        <td class="col_grp" style="display: none;text-align: right" valor="${rub?.grupoCostos?.id}"></td>
                         <td style="text-align: right" class="cant">
                             <g:formatNumber number="${rub.cantidad}" format="##,#####0" minFractionDigits="5" maxFractionDigits="5" locale="ec"/>
                         </td>
@@ -673,8 +676,8 @@
 <script type="text/javascript">
     function agregar(id,tipo){
         var tipoItem=$("#item_id").attr("tipo")
-        console.log("-->" + tipoItem)
         var cant = $("#item_cantidad").val()
+        var grupo = $("#grupoCostos option:selected").val();
         if (cant == "")
             cant = 0
         if (isNaN(cant))
@@ -693,7 +696,7 @@
             rend = 1
         if ($("#item_id").val() * 1 > 0) {
             if (cant > 0) {
-                var data = "rubro="+id+"&item=" + $("#item_id").val() + "&cantidad=" + cant + "&rendimiento=" + rend
+                var data = "rubro="+id+"&item=" + $("#item_id").val() + "&cantidad=" + cant + "&rendimiento=" + rend + "&grupoCostos=" + grupo
                 $.ajax({type : "POST", url : "${g.createLink(controller: 'rubro',action:'addItem')}",
                     data     : data,
                     success  : function (msg) {
@@ -713,6 +716,9 @@
                         td = $("<td>")
                         td.html($("#item_desc").val())
                         tr.append(td)
+                        // td = $("<td class='col_grp' style='display: none;text-align: right'></td>");
+                        // td.attr("valor",parts[6]);
+                        tr.append(td);
 
                         if (parts[0] == "1") {
                             $("#tabla_material").children().find(".cdgo").each(function () {
@@ -720,9 +726,11 @@
                                 if ($(this).html() == $("#cdgo_buscar").val()) {
                                     var tdCant = $(this).parent().find(".cant")
                                     var tdRend = $(this).parent().find(".rend")
+                                    var tdGrp = $(this).parent().find(".col_grp");
                                     tdCant.html(number_format(parts[3], 5, ".", ""))
                                     tdRend.html(number_format(parts[4], 5, ".", ""))
                                     tdRend.attr("valor", parts[4]);
+                                    tdGrp.attr("valor", parts[6]);
                                     band = false
                                 }
                             });
@@ -742,6 +750,9 @@
                                 tr.append(td)
                                 td = $('<td class="col_total" style="display: none;text-align: right"></td>');
                                 tr.append(td)
+                                td = $('<td class="col_grp" style="display: none;text-align: right"></td>');
+                                td.attr("valor",parts[6]);
+                                tr.append(td)
                                 td = $('<td  style="width: 40px;text-align: center" class="col_delete">')
                                 a = $('<a class="btn btn-small btn-danger borrarItem" href="#" rel="tooltip" title="Eliminar" iden="' + parts[1] + '"><i class="icon-trash"></i></a>')
                                 td.append(a)
@@ -757,9 +768,11 @@
                                     if ($(this).html() == $("#cdgo_buscar").val()) {
                                         var tdCant = $(this).parent().find(".cant")
                                         var tdRend = $(this).parent().find(".rend")
+                                        var tdGrp = $(this).parent().find(".col_grp");
                                         tdCant.html(number_format(parts[3], 5, ".", ""))
                                         tdRend.html(number_format(parts[4], 5, ".", ""))
                                         tdRend.attr("valor", parts[4]);
+                                        tdGrp.attr("valor", parts[6]);
                                         band = false
                                     }
                                 });
@@ -778,6 +791,9 @@
                                     tr.append(td)
                                     td = $('<td class="col_total" style="display: none;text-align: right"></td>');
                                     tr.append(td)
+                                    td = $('<td class="col_grp" style="display: none;text-align: right"></td>');
+                                    td.attr("valor",parts[6]);
+                                    tr.append(td)
                                     td = $('<td  style="width: 40px;text-align: center" class="col_delete">')
                                     a = $('<a class="btn btn-small btn-danger borrarItem" href="#" rel="tooltip" title="Eliminar" iden="' + parts[1] + '"><i class="icon-trash"></i></a>')
                                     td.append(a)
@@ -789,11 +805,14 @@
                                 $("#tabla_equipo").children().find(".cdgo").each(function () {
                                     if ($(this).html() == $("#cdgo_buscar").val()) {
 
-                                        var tdCant = $(this).parent().find(".cant")
-                                        var tdRend = $(this).parent().find(".rend")
-                                        tdCant.html(number_format(parts[3], 5, ".", ""))
-                                        tdRend.html(number_format(parts[4], 5, ".", ""))
+                                        var tdCant = $(this).parent().find(".cant");
+                                        var tdRend = $(this).parent().find(".rend");
+                                        var tdGrp = $(this).parent().find(".col_grp");
+
+                                        tdCant.html(number_format(parts[3], 5, ".", ""));
+                                        tdRend.html(number_format(parts[4], 5, ".", ""));
                                         tdRend.attr("valor", parts[4]);
+                                        tdGrp.attr("valor", parts[6]);
                                         band = false
                                     }
                                 });
@@ -813,6 +832,9 @@
                                     tr.append(td)
                                     td = $('<td class="col_total" style="display: none;text-align: right"></td>');
                                     tr.append(td)
+                                    td = $('<td class="col_grp" style="display: none;text-align: right"></td>');
+                                    td.attr("valor",parts[6]);
+                                    tr.append(td)
                                     td = $('<td  style="width: 40px;text-align: center" class="col_delete">')
                                     a = $('<a class="btn btn-small btn-danger borrarItem" href="#" rel="tooltip" title="Eliminar" iden="' + parts[1] + '"><i class="icon-trash"></i></a>')
                                     td.append(a)
@@ -831,6 +853,7 @@
                             var unidad
                             var rendimiento
                             var item
+                            var grupo
                             var tipo = row.attr("tipo")
                             for (i = 2; i < hijos.length; i++) {
 
@@ -846,6 +869,8 @@
                                     item = $(hijos[i]).attr("id")
                                 if ($(hijos[i]).hasClass("col_jornal"))
                                     item = $(hijos[i]).attr("id")
+                                if ($(hijos[i]).hasClass("col_grp"))
+                                    grupo = $(hijos[i]).attr("valor")
 
                             }
                             item = item.replace("i_", "")
@@ -857,10 +882,8 @@
                             $("#cdgo_buscar").val(codigo)
                             $("#item_desc").val(desc)
                             $("#item_unidad").val(unidad)
-
-
-
-                        })
+                            $("#grupoCostos").val(grupo);
+                        });
 
                         if (a) {
                             a.bind("click", function () {
@@ -1520,6 +1543,7 @@
             var unidad
             var rendimiento
             var item
+            var grupo
             var tipo = row.attr("tipo")
             for (i = 2; i < hijos.length; i++) {
 
@@ -1535,6 +1559,8 @@
                     item = $(hijos[i]).attr("id")
                 if ($(hijos[i]).hasClass("col_jornal"))
                     item = $(hijos[i]).attr("id")
+                if ($(hijos[i]).hasClass("col_grp"))
+                    grupo = $(hijos[i]).attr("valor")
 
             }
             item = item.replace("i_", "")
@@ -1546,9 +1572,7 @@
             $("#cdgo_buscar").val(codigo)
             $("#item_desc").val(desc)
             $("#item_unidad").val(unidad)
-
-
-
+            $("#grupoCostos").val(grupo);
         })
 
         $("#selClase").change(function () {
