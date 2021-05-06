@@ -1099,7 +1099,7 @@ class Reportes6Controller {
         addCellTabla(tablaDirectos, new Paragraph("COSTOS DIRECTOS ", times14bold), prmsCellIzquierda)
         addCellTabla(tablaDirectos, new Paragraph(" ", times10bold), prmsCellIzquierda)
 
-        addCellTabla(tablaTitulo, new Paragraph("Remuneraciones ", times12bold), prmsCellIzquierda)
+        addCellTabla(tablaTitulo, new Paragraph("REMUNERACIONES ", times12bold), prmsCellIzquierda)
         addCellTabla(tablaTitulo, new Paragraph(" ", times10bold), prmsCellIzquierda)
 
         res.each { r ->
@@ -1145,7 +1145,7 @@ class Reportes6Controller {
         tablaTotalesMano.setWidthPercentage(100)
         tablaTotalesMano.setWidths(arregloEnteros([70, 30]))
 
-        addCellTabla(tablaTitulo2, new Paragraph("Viajes y Viáticos", times12bold), prmsCellIzquierda)
+        addCellTabla(tablaTitulo2, new Paragraph("VIAJES Y VIÁTICOS", times12bold), prmsCellIzquierda)
         addCellTabla(tablaTitulo2, new Paragraph(" ", times10bold), prmsCellIzquierda)
 
         res.each { j ->
@@ -1189,7 +1189,7 @@ class Reportes6Controller {
         tablaTotalesEquipos.setWidthPercentage(100)
         tablaTotalesEquipos.setWidths(arregloEnteros([70, 30]))
 
-        addCellTabla(tablaTitulo3, new Paragraph("Materiales ", times12bold), prmsCellIzquierda)
+        addCellTabla(tablaTitulo3, new Paragraph("MATERIALES ", times12bold), prmsCellIzquierda)
         addCellTabla(tablaTitulo3, new Paragraph(" ", times10bold), prmsCellIzquierda)
 
         res.each { k ->
@@ -1230,7 +1230,7 @@ class Reportes6Controller {
         tablaComposicion4.setWidthPercentage(100)
         tablaComposicion4.setWidths(arregloEnteros([12, 36, 5, 9, 9, 9, 10, 10]))
 
-        addCellTabla(tablaTitulo4, new Paragraph("Mano de Obra ", times12bold), prmsCellIzquierda)
+        addCellTabla(tablaTitulo4, new Paragraph("MANO DE OBRA ", times12bold), prmsCellIzquierda)
         addCellTabla(tablaTitulo4, new Paragraph(" ", times10bold), prmsCellIzquierda)
 
         res.each { k ->
@@ -1264,7 +1264,7 @@ class Reportes6Controller {
         tablaComposicion5.setWidthPercentage(100)
         tablaComposicion5.setWidths(arregloEnteros([12, 36, 5, 9, 9, 9, 10, 10]))
 
-        addCellTabla(tablaTitulo5, new Paragraph("Equipo", times12bold), prmsCellIzquierda)
+        addCellTabla(tablaTitulo5, new Paragraph("EQUIPO", times12bold), prmsCellIzquierda)
         addCellTabla(tablaTitulo5, new Paragraph(" ", times10bold), prmsCellIzquierda)
 
         res.each { k ->
@@ -1298,7 +1298,7 @@ class Reportes6Controller {
         tablaComposicion6.setWidthPercentage(100)
         tablaComposicion6.setWidths(arregloEnteros([12, 36, 5, 9, 9, 9, 10, 10]))
 
-        addCellTabla(tablaTitulo6, new Paragraph("Reproducciones", times12bold), prmsCellIzquierda)
+        addCellTabla(tablaTitulo6, new Paragraph("REPRODUCCIONES", times12bold), prmsCellIzquierda)
         addCellTabla(tablaTitulo6, new Paragraph(" ", times10bold), prmsCellIzquierda)
 
         res.each { k ->
@@ -1332,7 +1332,7 @@ class Reportes6Controller {
         tablaComposicion7.setWidthPercentage(100)
         tablaComposicion7.setWidths(arregloEnteros([12, 36, 5, 9, 9, 9, 10, 10]))
 
-        addCellTabla(tablaTitulo7, new Paragraph("Equipos e Instalaciones", times12bold), prmsCellIzquierda)
+        addCellTabla(tablaTitulo7, new Paragraph("EQUIPOS E INSTALACIONES", times12bold), prmsCellIzquierda)
         addCellTabla(tablaTitulo7, new Paragraph(" ", times10bold), prmsCellIzquierda)
 
         res.each { k ->
@@ -1381,7 +1381,7 @@ class Reportes6Controller {
         tablaComposicion8.setWidthPercentage(100)
         tablaComposicion8.setWidths(arregloEnteros([12, 36, 5, 9, 9, 9, 10, 10]))
 
-        addCellTabla(tablaTitulo8, new Paragraph("Personal de Dirección", times12bold), prmsCellIzquierda)
+        addCellTabla(tablaTitulo8, new Paragraph("PERSONAL DE DIRECCIÓN", times12bold), prmsCellIzquierda)
         addCellTabla(tablaTitulo8, new Paragraph(" ", times10bold), prmsCellIzquierda)
 
         res.each { k ->
@@ -1415,7 +1415,7 @@ class Reportes6Controller {
         tablaComposicion9.setWidthPercentage(100)
         tablaComposicion9.setWidths(arregloEnteros([12, 36, 5, 9, 9, 9, 10, 10]))
 
-        addCellTabla(tablaTitulo9, new Paragraph("Servicios Varios", times12bold), prmsCellIzquierda)
+        addCellTabla(tablaTitulo9, new Paragraph("SERVICIOS VARIOS", times12bold), prmsCellIzquierda)
         addCellTabla(tablaTitulo9, new Paragraph(" ", times10bold), prmsCellIzquierda)
 
         res.each { k ->
@@ -1464,7 +1464,7 @@ class Reportes6Controller {
         tablaComposicion10.setWidthPercentage(100)
         tablaComposicion10.setWidths(arregloEnteros([12, 36, 5, 9, 9, 9, 10, 10]))
 
-        addCellTabla(tablaTitulo10, new Paragraph("Gastos Generales", times12bold), prmsCellIzquierda)
+        addCellTabla(tablaTitulo10, new Paragraph("GASTOS GENERALES", times12bold), prmsCellIzquierda)
         addCellTabla(tablaTitulo10, new Paragraph(" ", times10bold), prmsCellIzquierda)
 
         res.each { k ->
