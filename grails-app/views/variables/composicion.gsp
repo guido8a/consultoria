@@ -399,7 +399,8 @@
                         }
                         if ($(".pdf.active").hasClass("-1") == true) {
 
-                            location.href = "${g.createLink(controller: 'reportes' ,action: 'reporteComposicion',id: obra?.id)}?sp=${sub}"
+                            %{--location.href = "${g.createLink(controller: 'reportes' ,action: 'reporteComposicion',id: obra?.id)}?sp=${sub}"--}%
+                            location.href = "${g.createLink(controller: 'reportes6' ,action: 'reporteComposicion',id: obra?.id)}?sp=${sub}"
                         }
                     });
 
