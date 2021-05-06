@@ -97,6 +97,21 @@
     <div class="control-group">
         <div>
             <span class="control-label label label-inverse">
+                Grupo de Costo
+            </span>
+        </div>
+
+        <div class="controls">
+           <g:select name="grupoCostos" from="${janus.apus.GrupoCostos.list()}" optionKey="id" optionValue="descripcion" class="form-control" value="${itemInstance?.grupoCostos?.id}"/>
+
+            <p class="help-block ui-helper-hidden"></p>
+        </div>
+    </div>
+
+
+    <div class="control-group">
+        <div>
+            <span class="control-label label label-inverse">
                 Código CPC (SERCOP)
             </span>
         </div>
