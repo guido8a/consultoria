@@ -268,7 +268,7 @@
             <div class="span2" style="width: 150px; margin-left: 50px">
                 Grupo de Costos
                 <g:select name="grupoCostos" from="${janus.apus.GrupoCostos.list()}" class="span12"
-                          optionKey="id" optionValue="descripcion"/>
+                          optionKey="id" optionValue="descripcion" style="font-size: 10pt"/>
             </div>
 
 
