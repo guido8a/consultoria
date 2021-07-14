@@ -1189,7 +1189,11 @@ class Reportes6Controller {
         tablaTotalesEquipos.setWidthPercentage(100)
         tablaTotalesEquipos.setWidths(arregloEnteros([70, 30]))
 
-        addCellTabla(tablaTitulo3, new Paragraph("MATERIALES ", times12bold), prmsCellIzquierda)
+//        addCellTabla(tablaTitulo3, new Paragraph(" ", times12bold), prmsCellIzquierda)
+//        addCellTabla(tablaTitulo3, new Paragraph(" ", times10bold), prmsCellIzquierda)
+
+        addCellTabla(tablaTitulo3, new Paragraph("SUBCONTRATOS ", times12bold), prmsCellIzquierda)
+//        addCellTabla(tablaTitulo3, new Paragraph("MATERIALES ", times12bold), prmsCellIzquierda)
         addCellTabla(tablaTitulo3, new Paragraph(" ", times10bold), prmsCellIzquierda)
 
         res.each { k ->
@@ -1230,8 +1234,8 @@ class Reportes6Controller {
         tablaComposicion4.setWidthPercentage(100)
         tablaComposicion4.setWidths(arregloEnteros([12, 36, 5, 9, 9, 9, 10, 10]))
 
-        addCellTabla(tablaTitulo4, new Paragraph("MANO DE OBRA ", times12bold), prmsCellIzquierda)
-        addCellTabla(tablaTitulo4, new Paragraph(" ", times10bold), prmsCellIzquierda)
+//        addCellTabla(tablaTitulo4, new Paragraph("MANO DE OBRA ", times12bold), prmsCellIzquierda)
+//        addCellTabla(tablaTitulo4, new Paragraph(" ", times10bold), prmsCellIzquierda)
 
         res.each { k ->
             if (k?.grid == 4) {
@@ -1264,8 +1268,8 @@ class Reportes6Controller {
         tablaComposicion5.setWidthPercentage(100)
         tablaComposicion5.setWidths(arregloEnteros([12, 36, 5, 9, 9, 9, 10, 10]))
 
-        addCellTabla(tablaTitulo5, new Paragraph("EQUIPO", times12bold), prmsCellIzquierda)
-        addCellTabla(tablaTitulo5, new Paragraph(" ", times10bold), prmsCellIzquierda)
+//        addCellTabla(tablaTitulo5, new Paragraph("EQUIPO", times12bold), prmsCellIzquierda)
+//        addCellTabla(tablaTitulo5, new Paragraph(" ", times10bold), prmsCellIzquierda)
 
         res.each { k ->
             if (k?.grid == 5) {
@@ -1297,6 +1301,9 @@ class Reportes6Controller {
         PdfPTable tablaComposicion6 = new PdfPTable(8)
         tablaComposicion6.setWidthPercentage(100)
         tablaComposicion6.setWidths(arregloEnteros([12, 36, 5, 9, 9, 9, 10, 10]))
+
+//        addCellTabla(tablaTitulo6, new Paragraph(" ", times12bold), prmsCellIzquierda)
+//        addCellTabla(tablaTitulo6, new Paragraph(" ", times10bold), prmsCellIzquierda)
 
         addCellTabla(tablaTitulo6, new Paragraph("REPRODUCCIONES", times12bold), prmsCellIzquierda)
         addCellTabla(tablaTitulo6, new Paragraph(" ", times10bold), prmsCellIzquierda)
