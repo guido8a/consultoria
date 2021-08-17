@@ -914,6 +914,7 @@ class Reportes6Controller {
 
 
     def reporteComposicion() {
+        println " reporteComposicion "
 
         def obra = Obra.get(params.id)
         def totales
@@ -1029,10 +1030,10 @@ class Reportes6Controller {
         Paragraph headersTitulo = new Paragraph();
         addEmptyLine(headersTitulo, 1);
         headersTitulo.setAlignment(Element.ALIGN_CENTER);
-        headersTitulo.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", times18bold));
-        headersTitulo.add(new Paragraph("COMPOSICIÓN", times14bold));
+        headersTitulo.add(new Paragraph("SEP - G.A.D. PROVINCIA DE PICHINCHA", times14bold));
+//        headersTitulo.add(new Paragraph("COMPOSICIÓN", times14bold));
         headersTitulo.add(new Paragraph(obra?.departamento?.direccion?.nombre, times12bold));
-        headersTitulo.add(new Paragraph("", times12bold));
+//        headersTitulo.add(new Paragraph("", times12bold));
         document.add(headersTitulo)
 
         PdfPTable header = new PdfPTable(3)
@@ -1053,10 +1054,12 @@ class Reportes6Controller {
         addCellTabla(header, new Paragraph(obra?.oficioIngreso, times8bold), prmsCellHead3)
         addCellTabla(header, new Paragraph("FECHA", times8bold), prmsCellHead3)
         addCellTabla(header, new Paragraph(" : ", times8bold), prmsCellHead3)
-        addCellTabla(header, new Paragraph(printFecha(obra?.fechaCreacionObra), times8bold), prmsCellHead3)
-        addCellTabla(header, new Paragraph("FECHA ACT. PRECIOS", times8bold), prmsCellHead3)
-        addCellTabla(header, new Paragraph(" : ", times8bold), prmsCellHead3)
-        addCellTabla(header, new Paragraph(printFecha(obra?.fechaPreciosRubros), times8bold), prmsCellHead3)
+//        addCellTabla(header, new Paragraph(printFecha(obra?.fechaCreacionObra), times8bold), prmsCellHead3)
+        addCellTabla(header, new Paragraph(printFecha(obra?.fechaCreacionObra) + "         FECHA ACT. PRECIOS : " +
+                printFecha(obra?.fechaPreciosRubros), times8bold), prmsCellHead3)
+//        addCellTabla(header, new Paragraph("FECHA ACT. PRECIOS", times8bold), prmsCellHead3)
+//        addCellTabla(header, new Paragraph(" : ", times8bold), prmsCellHead3)
+//        addCellTabla(header, new Paragraph(printFecha(obra?.fechaPreciosRubros), times8bold), prmsCellHead3)
         addCellTabla(header, new Paragraph("", times8bold), prmsCellHead3)
         addCellTabla(header, new Paragraph("", times8bold), prmsCellHead3)
         addCellTabla(header, new Paragraph("", times8bold), prmsCellHead3)
@@ -1096,7 +1099,7 @@ class Reportes6Controller {
         tablaDirectos.setWidthPercentage(100)
         tablaDirectos.setWidths(arregloEnteros([90, 10]))
 
-        addCellTabla(tablaDirectos, new Paragraph("COSTOS DIRECTOS ", times14bold), prmsCellIzquierda)
+        addCellTabla(tablaDirectos, new Paragraph("COSTOS DIRECTOS ", times12bold), prmsCellIzquierda)
         addCellTabla(tablaDirectos, new Paragraph(" ", times10bold), prmsCellIzquierda)
 
         addCellTabla(tablaTitulo, new Paragraph("REMUNERACIONES ", times12bold), prmsCellIzquierda)
@@ -1377,7 +1380,7 @@ class Reportes6Controller {
         tablaIndirectos.setWidthPercentage(100)
         tablaIndirectos.setWidths(arregloEnteros([90, 10]))
 
-        addCellTabla(tablaIndirectos, new Paragraph("COSTOS INDIRECTOS ", times14bold), prmsCellIzquierda)
+        addCellTabla(tablaIndirectos, new Paragraph("COSTOS INDIRECTOS ", times12bold), prmsCellIzquierda)
         addCellTabla(tablaIndirectos, new Paragraph(" ", times10bold), prmsCellIzquierda)
 
         PdfPTable tablaTitulo8 = new PdfPTable(2)
@@ -1460,8 +1463,8 @@ class Reportes6Controller {
         tablaGenerales.setWidthPercentage(100)
         tablaGenerales.setWidths(arregloEnteros([90, 10]))
 
-        addCellTabla(tablaGenerales, new Paragraph("GASTOS GENERALES ", times14bold), prmsCellIzquierda)
-        addCellTabla(tablaGenerales, new Paragraph(" ", times10bold), prmsCellIzquierda)
+//        addCellTabla(tablaGenerales, new Paragraph("GASTOS GENERALES ", times12bold), prmsCellIzquierda)
+//        addCellTabla(tablaGenerales, new Paragraph(" ", times10bold), prmsCellIzquierda)
 
         PdfPTable tablaTitulo10 = new PdfPTable(2)
         tablaTitulo10.setWidthPercentage(100)
