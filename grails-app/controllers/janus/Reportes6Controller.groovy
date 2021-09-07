@@ -924,7 +924,7 @@ class Reportes6Controller {
         def valorTotalMano
         def total2 = 0
         def totalesEquipos
-        def valorTotalEquipos
+        def valorTotalEquipos = 0
         def total3 = 0
         def total4 = 0
         def total5 = 0
@@ -1369,8 +1369,12 @@ class Reportes6Controller {
         tablaTotales1.setWidthPercentage(100)
         tablaTotales1.setWidths(arregloEnteros([90, 10]))
 
+//        println "totales: ${valorTotal} + ${valorTotalMano} + ${valorTotalEquipos} + ${total4} + ${total5} + ${total6} + ${total7}"
+        def totalCD = valorTotal + valorTotalMano + valorTotalEquipos + total4 + total5 + total6 + total7
+        println "total: ${totalCD}"
         addCellTabla(tablaTotales1, new Paragraph("TOTAL COSTO DIRECTO:", times10bold), prmsCellDerecha)
-        addCellTabla(tablaTotales1, new Paragraph(g.formatNumber(number: (valorTotal + valorTotalMano + valorTotalEquipos + total4 + total5 + total6 + total7), minFractionDigits:
+        addCellTabla(tablaTotales1, new Paragraph(g.formatNumber(number: (valorTotal + valorTotalMano + valorTotalEquipos +
+                total4 + total5 + total6 + total7), minFractionDigits:
                 3, maxFractionDigits: 3, format: "##,##0", locale: "ec"), times10bold), prmsNum)
 
         addCellTabla(tablaComposicion7, new Paragraph(" ", times10bold), prmsNum)
@@ -1513,11 +1517,13 @@ class Reportes6Controller {
         tablaTotalGeneral.setWidths(arregloEnteros([90, 10]))
 
         addCellTabla(tablaTotalGeneral, new Paragraph("Subtotal Costo:", times10bold), prmsCellDerecha)
-        addCellTabla(tablaTotalGeneral, new Paragraph(g.formatNumber(number: (valorTotal + valorTotalMano + valorTotalEquipos + total4 + total5 + total6 + total7 + total8 + total9 + total10), minFractionDigits:
+        addCellTabla(tablaTotalGeneral, new Paragraph(g.formatNumber(number: (valorTotal + valorTotalMano +
+                valorTotalEquipos + total4 + total5 + total6 + total7 + total8 + total9 + total10), minFractionDigits:
                 3, maxFractionDigits: 3, format: "##,##0", locale: "ec"), times10bold), prmsNum)
 
         addCellTabla(tablaTotalGeneral, new Paragraph("Utilidad empresarial:", times10bold), prmsCellDerecha)
-        addCellTabla(tablaTotalGeneral, new Paragraph(g.formatNumber(number: (obra?.valor ? obra?.valor - (valorTotal + valorTotalMano + valorTotalEquipos + total4 + total5 + total6 + total7 + total8 + total9 + total10) : 0), minFractionDigits:
+        addCellTabla(tablaTotalGeneral, new Paragraph(g.formatNumber(number: (obra?.valor ? obra?.valor - (valorTotal +
+                valorTotalMano + valorTotalEquipos + total4 + total5 + total6 + total7 + total8 + total9 + total10) : 0), minFractionDigits:
                 3, maxFractionDigits: 3, format: "##,##0", locale: "ec"), times10bold), prmsNum)
 
         addCellTabla(tablaTotalGeneral, new Paragraph("Total:", times10bold), prmsCellDerecha)
