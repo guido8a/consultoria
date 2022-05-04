@@ -1192,34 +1192,37 @@ class Reportes6Controller {
         tablaTotalesEquipos.setWidthPercentage(100)
         tablaTotalesEquipos.setWidths(arregloEnteros([70, 30]))
 
-//        addCellTabla(tablaTitulo3, new Paragraph(" ", times12bold), prmsCellIzquierda)
-//        addCellTabla(tablaTitulo3, new Paragraph(" ", times10bold), prmsCellIzquierda)
 
-        addCellTabla(tablaTitulo3, new Paragraph("SUBCONTRATOS ", times12bold), prmsCellIzquierda)
-//        addCellTabla(tablaTitulo3, new Paragraph("MATERIALES ", times12bold), prmsCellIzquierda)
-        addCellTabla(tablaTitulo3, new Paragraph(" ", times10bold), prmsCellIzquierda)
+        def tres = [3]
 
-        res.each { k ->
-            if (k?.grid == 3) {
-                addCellTabla(tablaComposicion3, new Paragraph(k?.codigo, times8normal), prmsCellIzquierda)
-                addCellTabla(tablaComposicion3, new Paragraph(k?.item, times8normal), prmsCellIzquierda)
-                addCellTabla(tablaComposicion3, new Paragraph(k?.unidad, times8normal), prmsCellHead)
-                addCellTabla(tablaComposicion3, new Paragraph(g.formatNumber(number: k?.cantidad, minFractionDigits:
-                        3, maxFractionDigits: 3, format: "##,##0", locale: "ec"), times8normal), prmsNum)
-                addCellTabla(tablaComposicion3, new Paragraph(g.formatNumber(number: k?.punitario, minFractionDigits:
-                        3, maxFractionDigits: 3, format: "##,##0", locale: "ec"), times8normal), prmsNum)
-                addCellTabla(tablaComposicion3, new Paragraph(g.formatNumber(number: k?.transporte, minFractionDigits:
-                        3, maxFractionDigits: 3, format: "##,##0", locale: "ec"), times8normal), prmsNum)
-                addCellTabla(tablaComposicion3, new Paragraph(g.formatNumber(number: k?.costo, minFractionDigits:
-                        3, maxFractionDigits: 3, format: "##,##0", locale: "ec"), times8normal), prmsNum)
-                addCellTabla(tablaComposicion3, new Paragraph(g.formatNumber(number: k?.total, minFractionDigits:
-                        3, maxFractionDigits: 3, format: "##,##0", locale: "ec"), times8normal), prmsNum)
+        if(res?.grid?.intersect(tres) != []){
+            addCellTabla(tablaTitulo3, new Paragraph("SUBCONTRATOS ", times12bold), prmsCellIzquierda)
+            addCellTabla(tablaTitulo3, new Paragraph(" ", times10bold), prmsCellIzquierda)
 
-                totalesEquipos = k?.total
-                valorTotalEquipos = (total3 += totalesEquipos)
+            res.each { k ->
+                if (k?.grid == 3) {
+                    addCellTabla(tablaComposicion3, new Paragraph(k?.codigo, times8normal), prmsCellIzquierda)
+                    addCellTabla(tablaComposicion3, new Paragraph(k?.item, times8normal), prmsCellIzquierda)
+                    addCellTabla(tablaComposicion3, new Paragraph(k?.unidad, times8normal), prmsCellHead)
+                    addCellTabla(tablaComposicion3, new Paragraph(g.formatNumber(number: k?.cantidad, minFractionDigits:
+                            3, maxFractionDigits: 3, format: "##,##0", locale: "ec"), times8normal), prmsNum)
+                    addCellTabla(tablaComposicion3, new Paragraph(g.formatNumber(number: k?.punitario, minFractionDigits:
+                            3, maxFractionDigits: 3, format: "##,##0", locale: "ec"), times8normal), prmsNum)
+                    addCellTabla(tablaComposicion3, new Paragraph(g.formatNumber(number: k?.transporte, minFractionDigits:
+                            3, maxFractionDigits: 3, format: "##,##0", locale: "ec"), times8normal), prmsNum)
+                    addCellTabla(tablaComposicion3, new Paragraph(g.formatNumber(number: k?.costo, minFractionDigits:
+                            3, maxFractionDigits: 3, format: "##,##0", locale: "ec"), times8normal), prmsNum)
+                    addCellTabla(tablaComposicion3, new Paragraph(g.formatNumber(number: k?.total, minFractionDigits:
+                            3, maxFractionDigits: 3, format: "##,##0", locale: "ec"), times8normal), prmsNum)
+
+                    totalesEquipos = k?.total
+                    valorTotalEquipos = (total3 += totalesEquipos)
+                }
+
             }
-
         }
+
+
 
 //        addCellTabla(tablaTotalesEquipos, new Paragraph("Total Equipos:", times10bold), prmsCellDerecha)
 //        addCellTabla(tablaTotalesEquipos, new Paragraph(g.formatNumber(number: valorTotalEquipos, minFractionDigits:
